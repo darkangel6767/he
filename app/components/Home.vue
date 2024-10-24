@@ -9,6 +9,7 @@
         class="carb100"
         v-model="carb100"
         hint="углеводов на 100г, г"
+        ref="firstInput"
         @textChange="onTextChange"
       />
       <TextField
@@ -21,6 +22,7 @@
         <Label class="title" text="ХЕ:" />
         <Label class="rez" :text="carb" />
       </FlexboxLayout>
+      <Button class="clearBtn" text="Очистить" @tap="clearFields" />
     </StackLayout>
   </Page>
 </template>
@@ -42,22 +44,18 @@ export default Vue.extend({
       const weight = +this.weight ?? 0;
       this.carb = ((carb100 * weight) / 1000).toFixed(2);
     },
+    clearFields() {
+      this.carb100 = '';
+      this.weight = '';
+      this.$refs.firstInput.nativeView.focus();
+    },
   },
 });
 </script>
 
 <style scoped lang="scss">
-.header {
-  font-size: 20;
-}
 .main {
   padding: 20 80;
-}
-.carb100 {
-  font-size: 16;
-}
-.weight {
-  font-size: 16;
 }
 .total {
   padding: 40 60;
@@ -67,5 +65,8 @@ export default Vue.extend({
 }
 .rez {
   font-size: 20;
+}
+.clearBtn {
+  border-radius: 8;
 }
 </style>

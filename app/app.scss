@@ -21,10 +21,18 @@
 // }
 
 Label,
-TextField {
+TextField,
+Button {
   @include colorize($color: secondary);
+  font-size: 16;
+}
+
+Button {
+  @include colorize($border-color: secondary);
+  border-width: 1;
 }
 
 ActionBar Label {
   @include colorize($color: secondary);
+  font-size: 20;
 }
